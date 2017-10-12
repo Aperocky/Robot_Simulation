@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -19,11 +20,17 @@ public class Battle {
 
     public Arena arena;
 
-    public Battle(Arena arena){
+    public Logger logger;
+
+    public boolean log_enabled;
+
+    public Battle(Arena arena, Logger logger, boolean log){
         this.arena = arena;
+        this.logger = logger;
+        log_enabled = log;
     }
 
-    public void ProcArena(){
+    public int ProcArena(int time){
 
         ArrayList<Robots> teaminfo = new ArrayList<Robots>(Arrays.asList(arena.robotlist));
 
@@ -57,12 +64,26 @@ public class Battle {
         }
 
         // Print flagged devices:
-        System.out.println(flagged);
+//        System.out.println(flagged);
+
+        // Log positions.
+        if(log_enabled) {
+            try {
+                logger.write(arena.robotlist, arena.targetlist, time);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return flagged;
     }
 
-    public void run(int time){
+    public double run(int time){
+        int sum = 0;
         for(int i = 0; i<time; i++){
-            ProcArena();
+            sum += ProcArena(i);
         }
+        double avg = sum/(double) time;
+        return avg;
     }
 }

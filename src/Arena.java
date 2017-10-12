@@ -21,11 +21,19 @@ public class Arena {
     public int RobotCount;
     public Robots[] robotlist;
     public Targets[] targetlist;
+    public int time;
+
+    // Mutator
+
+    public void setTime(int time){
+        this.time = time;
+    }
 
     // Generate random velocity
 
     public static double[] GenV(){
 
+//        System.out.println("This is called");
         double direction = 2*Math.PI*Math.random();
         double Vx = Math.cos(direction)*1.5;
         double Vy = Math.sin(direction)*1.5;
@@ -52,6 +60,7 @@ public class Arena {
 
         robotlist = new Robots[m];
         targetlist = new Targets[n];
+        this.radius = radius;
 
         for(int i = 0; i<m; i++){
             double[] pos = GenLocation();
