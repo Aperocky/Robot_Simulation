@@ -47,7 +47,7 @@ public class Arena {
 
         double direction = 2*Math.PI*Math.random();
         // Explaination: Since the inner space is smaller, we'll twitch the distance to make the distribution even.
-        double distance = Math.sqrt(10000*Math.random());
+        double distance = Math.sqrt(radius*radius*Math.random());
         double Xpos = Math.cos(direction)*distance;
         double Ypos = Math.sin(direction)*distance;
         return new double[]{Xpos, Ypos};

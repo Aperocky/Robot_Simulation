@@ -20,6 +20,7 @@ public class Main {
         String filename = "records.log";
         int m = 3;
         int n = 6;
+        double radius = 100;
 
         if(args.length == 2){
             m = Integer.parseInt(args[0]);
@@ -29,13 +30,20 @@ public class Main {
         if(args.length == 3){
             m = Integer.parseInt(args[0]);
             n = Integer.parseInt(args[1]);
-            filename = args[2];
+            radius = Double.parseDouble(args[2]);
+        }
+
+        if(args.length == 4){
+            m = Integer.parseInt(args[0]);
+            n = Integer.parseInt(args[1]);
+            radius = Double.parseDouble(args[2]);
+            filename = args[3];
         }
 
         Logger logger = new Logger(filename);
 
         // Initiate Arena
-        Arena arena = new Arena(m, n, 100);
+        Arena arena = new Arena(m, n, radius);
 
         // Run for this amount of time.
         Battle event = new Battle(arena, logger, true);
@@ -44,7 +52,7 @@ public class Main {
         double avg = 0;
         for(int i = 0; i<20; i++) {
             // Initiate Arena
-            Arena aren = new Arena(m, n, 100);
+            Arena aren = new Arena(m, n, radius);
 
             // Run for this amount of time.
             Battle even = new Battle(aren, logger, false);
