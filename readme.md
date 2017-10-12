@@ -14,6 +14,8 @@ The simulation runs 20 games each and put out an average number of detection ave
 
 The log file only contains the record of the first game -> In the log file the position and speed of each robot and target are given --> I don't really want to write huge log files.
 
+Use the python file to draw graphs on iterations of java code!
+
 Explore yourself! 
 
 Best.
