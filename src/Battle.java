@@ -34,6 +34,10 @@ public class Battle {
 
         ArrayList<Robots> teaminfo = new ArrayList<Robots>(Arrays.asList(arena.robotlist));
 
+        for(Targets each: arena.targetlist){
+            each.flagged = false;
+        }
+
         // Have the robots detect targets and share info about each other.
 
         for(Robots soldiers: arena.robotlist){

@@ -35,29 +35,26 @@ public class Logger {
         pw.format("TIME: %d%n", time);
         pw.println("ROBOTS COORDINATES");
         for(Robots each: rlist){
-            pw.format("(%.2f, %.2f) \t Speed: (%.2f, %.2f)%n", each.Positions[0], each.Positions[1]
+            pw.format("(%.2f, %.2f), (%.2f, %.2f)%n", each.Positions[0], each.Positions[1]
             , each.Velocity[0], each.Velocity[1]);
         }
-        pw.println();
         pw.println("DISCOVERED TARGETS");
         int flagged = 0;
         for(Targets each: tlist){
             if(each.flagged){
-                pw.format("(%.2f, %.2f) \t Speed: (%.2f, %.2f)%n", each.Positions[0], each.Positions[1]
+                pw.format("(%.2f, %.2f), (%.2f, %.2f)%n", each.Positions[0], each.Positions[1]
                 , each.Velocity[0], each.Velocity[1]);
                 flagged++;
             }
         }
-        pw.println();
         pw.println("TARGETS THAT ARE NOT DISCOVERED");
         for(Targets each: tlist){
             if(!each.flagged){
-                pw.format("(%.2f, %.2f) \t Speed: (%.2f, %.2f)%n", each.Positions[0], each.Positions[1]
+                pw.format("(%.2f, %.2f), (%.2f, %.2f)%n", each.Positions[0], each.Positions[1]
                         , each.Velocity[0], each.Velocity[1]);
             }
         }
-        pw.format("%n NUMBER OF DETECTED TARGETS: %d%n", flagged);
-        pw.println();
+        pw.format("NUMBER OF DETECTED TARGETS: %d%n%n", flagged);
         pw.close();
 
     }

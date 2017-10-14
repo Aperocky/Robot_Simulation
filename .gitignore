@@ -2,3 +2,6 @@ out/
 *.iml
 *.zip
 *.log
+*.gif
+*.mp4
+.idea/

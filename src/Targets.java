@@ -41,8 +41,8 @@ public class Targets {
         if(OutOfBound(Positions, Arena.radius)){
 
             //Rebound from edge
-            Positions[0] = Positions[0]*0.98;
-            Positions[1] = Positions[1]*0.98;
+            Positions[0] = Positions[0]*0.99;
+            Positions[1] = Positions[1]*0.99;
 
             //Generate New Velocity
             Velocity = Arena.GenV();
