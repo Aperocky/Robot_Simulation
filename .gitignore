@@ -5,3 +5,5 @@ out/
 *.gif
 *.mp4
 .idea/
+*.png
+META-INF/

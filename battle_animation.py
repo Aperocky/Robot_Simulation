@@ -99,28 +99,39 @@ def plot(robotpos, detected, undetected, radius, time):
     ax.fill_between(x1, -radius, y2, facecolor='blue', alpha=0.5)
     ax.axis([-radius,radius,-radius,radius])
     ax.scatter(*zip(*robotpos[0]), s=10, c='r')
-    ax.scatter(*zip(*detected[0]), s=10, c='b')
-    ax.scatter(*zip(*undetected[0]), s=10, c='g')
+    if len(undetected[0])>0:
+        ax.scatter(*zip(*detected[0]), s=10, c='b')
+    if len(undetected[0])>0:
+        ax.scatter(*zip(*undetected[0]), s=10, c='g')
 
     def update(i):
     # Plot the robots and targets
-        print(i)
         ax.scatter(*zip(*robotpos[i]), s=2, c='r')
         if len(detected[i])>0:
             ax.scatter(*zip(*detected[i]), s=2, c='b')
-        ax.scatter(*zip(*undetected[i]), s=2, c='g')
+        if len(undetected[i])>0:
+            ax.scatter(*zip(*undetected[i]), s=2, c='g')
         return ax
 
     anim = FuncAnimation(fig, update, frames=range(1, time), interval=50)
-    anim.save('arena.mp4', writer='ffmpeg')
     plt.show()
+    return anim
+    # anim.save('arena.mp4', writer='ffmpeg')
 
 if __name__ == "__main__":
+    save = False
     radius = 100
     time = 120
-    if len(sys.argv) > 1:
+    fname = "arena"
+    if len(sys.argv) > 1 and not sys.argv[1] == 'DEFAULT':
         radius = int(sys.argv[1])
-    if len(sys.argv) > 2:
+    if len(sys.argv) > 2 and not sys.argv[2] == 'DEFAULT':
         time = int(sys.argv[2])
+    if len(sys.argv) > 3 and sys.argv[3] == 'save':
+        save = True;
+    if len(sys.argv) > 4:
+        fname = sys.argv[4]
     r, g, b = readfile(time)
-    plot(r,g,b, radius, time)
+    anim = plot(r,g,b, radius, time)
+    if save:
+        anim.save(fname+'.mp4', writer='ffmpeg')

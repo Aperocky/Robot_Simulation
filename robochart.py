@@ -10,13 +10,14 @@ for i in range(10):
                  communicate()[0])
     klist.append(float(value.rstrip()))
 
-plt.plot(range(1,11),klist, '.')
-plt.title('M = N, Radius = 100')
-plt.xlabel('Robots/Targets Number')
-plt.ylabel('Average Detection over 20 Cycles')
-plt.grid(True)
-plt.show()
-plt.close()
+fig1 = plt.figure()
+ax = fig1.add_subplot(111)
+ax.plot(range(1,11),klist, '.')
+ax.set_title("M = N, Radius = 100")
+ax.set_xlabel('Robots/Targets Number')
+ax.set_ylabel('Average Detection over 20 Cycles')
+ax.grid(True)
+fig1.savefig('figure1.png')
 
 klist.clear()
 for i in range(10):
@@ -27,13 +28,14 @@ for i in range(10):
                  communicate()[0])
     klist.append(float(value.rstrip()))
 
-plt.plot(range(1,11), klist, '.')
-plt.title('2M = N, Radius = 100')
-plt.xlabel('Robots Number')
-plt.ylabel('Average Detection over 20 Cycles')
-plt.grid(True)
-plt.show()
-plt.close()
+fig2 = plt.figure()
+ax = fig2.add_subplot(111)
+ax.plot(range(1,11), klist, '.')
+ax.set_title('2M = N, Radius = 100')
+ax.set_xlabel('Robots Number')
+ax.set_ylabel('Average Detection over 20 Cycles')
+ax.grid(True)
+fig2.savefig('figure2.png')
 
 klist.clear()
 for i in range(5):
@@ -44,13 +46,14 @@ for i in range(5):
                  communicate()[0])
     klist.append(float(value.rstrip()))
 
-plt.plot(range(1,6), klist, '.')
-plt.title('M = 2N, Radius = 100')
-plt.xlabel('Target Number')
-plt.ylabel('Average Detection over 20 Cycles')
-plt.grid(True)
-plt.show()
-plt.close()
+fig3 = plt.figure()
+ax = fig3.add_subplot(111)
+ax.plot(range(1,6), klist, '.')
+ax.set_title('M = 2N, Radius = 100')
+ax.set_xlabel('Target Number')
+ax.set_ylabel('Average Detection over 20 Cycles')
+ax.grid(True)
+fig3.savefig('figure3.png')
 
 klist.clear()
 dlist = []
@@ -63,10 +66,36 @@ for i in range(9):
     klist.append(float(value.rstrip()))
     dlist.append(radius)
 
-plt.plot(dlist, klist, '.')
-plt.title('M=N=10, Radius from 100m to 500m')
-plt.xlabel('Radius in meters')
-plt.ylabel('Average Detection over 20 Cycles')
-plt.grid(True)
-plt.show()
+fig4 = plt.figure()
+ax = fig4.add_subplot(111)
+ax.plot(dlist, klist, '.')
+ax.set_title('M=N=10, Radius from 100m to 500m')
+ax.set_xlabel('Radius in meters')
+ax.set_ylabel('Average Detection over 20 Cycles')
+ax.grid(True)
+fig4.savefig('figure4.png')
 plt.close()
+
+for k in range(5):
+
+    radius = (k+1)*100
+    klist.clear()
+    ratio = [.2, .5, 1, 4, 10]
+    for i in ratio:
+        m = 5;
+        n = int(i*m)
+        value = (subprocess.Popen("java -jar Robotarium.jar %d %d %d" %(m, n, radius), shell=True, stdout=subprocess.PIPE).
+                     communicate()[0])
+        klist.append(float(value.rstrip()))
+
+    figname = 'figure1' + str(k)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(range(5), klist, '.')
+    ax.set_title('Detection as n/m ratio change, Robots = 5, Radius = %d' % radius)
+    ax.set_xlabel('Ratio n/m')
+    plt.xticks(range(5), ratio)
+    ax.set_ylabel('Average Detection over 20 Cycles')
+    ax.grid(True)
+    fig.savefig(figname+'.png')
+    plt.close()
