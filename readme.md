@@ -10,11 +10,13 @@ They are (m, n, radius, filename). If you don't want to specify a filename for y
 
 The default values are m = 3, n = 6, radius = 100 and filename = "records.log"
 
-The simulation runs 20 games each and put out an average number of detection averaged over 120 secs and 20 simulations. 
+The simulation runs 100 games each and put out an average number of detection averaged over 120 secs and 100 simulations. 
 
 The log file only contains the record of the first game -> In the log file the position and speed of each robot and target are given --> I don't really want to write huge log files.
 
 Use the python file to draw graphs on iterations of java code!
+
+The shell script video.sh execute on 3 arguments, m, n, and radius. This will directly return an animation and the result of the average of 100 simulation.
 
 Explore yourself! 
 
