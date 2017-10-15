@@ -99,7 +99,7 @@ def plot(robotpos, detected, undetected, radius, time):
     ax.fill_between(x1, -radius, y2, facecolor='blue', alpha=0.5)
     ax.axis([-radius,radius,-radius,radius])
     ax.scatter(*zip(*robotpos[0]), s=10, c='r')
-    if len(undetected[0])>0:
+    if len(detected[0])>0:
         ax.scatter(*zip(*detected[0]), s=10, c='b')
     if len(undetected[0])>0:
         ax.scatter(*zip(*undetected[0]), s=10, c='g')

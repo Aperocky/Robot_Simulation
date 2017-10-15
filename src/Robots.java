@@ -87,6 +87,11 @@ public class Robots {
         //Get the sum of the array
         double[] TotalVector = Mathfunc.TotalVector(ForceVectors);
 
+        double Gear = 2;
+        //Important, this make robots faster when not enough targets are around. Crank up the GEARS!
+        TotalVector[0] *= Gear;
+        TotalVector[1] *= Gear;
+
         if(Mathfunc.Abs(TotalVector) > 2){
             TotalVector = Mathfunc.resizeVector(TotalVector, 2);
         }

@@ -50,7 +50,8 @@ public class Main {
         event.run(120);
 
         double avg = 0;
-        for(int i = 0; i<20; i++) {
+        int reps = 100;
+        for(int i = 0; i<reps; i++) {
             // Initiate Arena
             Arena aren = new Arena(m, n, radius);
 
@@ -58,7 +59,7 @@ public class Main {
             Battle even = new Battle(aren, logger, false);
             avg += even.run(120);
         }
-        avg = avg/20;
+        avg = avg/reps;
         System.out.println(avg);
     }
 }

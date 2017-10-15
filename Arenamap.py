@@ -99,6 +99,7 @@ def plot(robotpos, detected, undetected, radius):
     plt.scatter(*zip(*undetected), s=4, c='g')
     plt.axis([-radius,radius,-radius,radius])
     plt.show()
+    plt.savefig("arenamap.png")
 
 if __name__ == "__main__":
     radius = 100
